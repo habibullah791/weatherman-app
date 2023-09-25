@@ -3,10 +3,8 @@
 .idea/
 
 
-**/*.pdf
 **/__pycache__/
-
-
+__pycache__/
 
 
 # Unit test / coverage reports

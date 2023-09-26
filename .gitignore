@@ -25,3 +25,16 @@ coverage.xml
 # IPython
 profile_default/
 ipython_config.py
+
+
+# Flask specific
+*.pyc
+instance/
+*.pyo
+__pycache__/
+.pytest_cache/
+.env
+
+
+# virtual environment
+env/

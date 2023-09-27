@@ -1,5 +1,0 @@
-Report for average highest temperature, lowest temperature, and  mean humidity.
-Highest Average: 23C
-Lowest Average 17C
-Average Mean Humidity: 57%
-

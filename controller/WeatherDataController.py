@@ -36,3 +36,31 @@ class WeatherDataControler:
         data = utils.convertToJSON(data)
 
         return data
+    
+    
+    def getHighestHumidityStats(self, year, month):
+        category = "highestHumid"
+        data = utils.cal_HumidStat(year, month, category)
+        data = utils.convertToJSON(data)
+
+        return data
+    
+    def getLowestHumidityStats(self, year, month):
+        category = "lowestHumid"
+        data = utils.cal_HumidStat(year, month, category)
+        data = utils.convertToJSON(data)
+
+        return data
+    
+    def getMeanHumidityStats(self, year, month):
+        category = "meanHumid"
+        data = utils.cal_HumidStat(year, month, category)
+        data = utils.convertToJSON(data)
+
+        return data
+
+    def getAvgTemperatureHumidityStats(self, year, month):
+        data = utils.cal_AvgHighestLowestTemperatureHumidity(year, month)
+        data = utils.convertToJSON(data)
+        
+        return data

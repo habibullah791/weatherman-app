@@ -77,7 +77,7 @@ This README file provides documentation for the APIs used in the Weather Man Fla
 
 ### 8. Get the Average highest, lowest temperature and humidity
 
--  **Endpoint**: `/api/temperature/avg_highest_lowest_temperature?year=2006&month=6
+-  **Endpoint**: `/api/temperature_humid/avg_highest_lowest_temperature_humidity?year=2006&month=6
 
 -  **Method**: GET
 

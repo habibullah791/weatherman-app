@@ -28,14 +28,12 @@ class Utils:
 
         return fullPath
 
-
-# conver it to json 
+    # conver it to json
     def convertToJSON(self, weatherDataList):
         weatherDataListJSON = json.dumps(weatherDataList, indent=2)
         return weatherDataListJSON
 
-
-# cal high, lowest temp
+    # cal high, lowest temp
     def cal_HighestLowestTemperatureHumidity(self, year, month):
         fileName = self.getFileName(year, month)
         dayWeatherList = fileHandler.readFile(fileName)
@@ -66,9 +64,7 @@ class Utils:
 
         return calculation
 
-
-
-# temp stat
+    # temp stat
     def cal_TemperatureStat(self, year, month, category):
         fileName = self.getFileName(year, month)
         dayWeatherList = fileHandler.readFile(fileName)
@@ -109,3 +105,64 @@ class Utils:
                     meanTempt["date"] = date
             return meanTempt
 
+    # temp stat
+    def cal_HumidStat(self, year, month, category):
+        fileName = self.getFileName(year, month)
+        dayWeatherList = fileHandler.readFile(fileName)
+
+        if category == "highestHumid":
+            highHumid = {"highest_humid": 0, "date": ""}
+
+            for dayWeather in dayWeatherList:
+                maxTemp = dayWeather.Max_Humidity
+                date = dayWeather.PKT
+
+                if maxTemp > highHumid["highest_humid"]:
+                    highHumid["highest_humid"] = maxTemp
+                    highHumid["date"] = date
+            return highHumid
+
+        elif category == "lowestHumid":
+            lowHumid = {"lowest_humid": 1000, "date": ""}
+
+            for dayWeather in dayWeatherList:
+                maxTemp = dayWeather.Min_Humidity
+                date = dayWeather.PKT
+
+                if maxTemp < lowHumid["lowest_humid"]:
+                    lowHumid["lowest_humid"] = maxTemp
+                    lowHumid["date"] = date
+            return lowHumid
+
+        elif category == "meanHumid":
+            meanHumid = {"mean_humid": 0, "date": ""}
+
+            for dayWeather in dayWeatherList:
+                meanTemp = dayWeather.Mean_Humidity
+                date = dayWeather.PKT
+
+                if meanTemp > meanHumid["mean_humid"]:
+                    meanHumid["mean_humid"] = meanTemp
+                    meanHumid["date"] = date
+            return meanHumid
+
+    def cal_AvgHighestLowestTemperatureHumidity(self, year, month):
+        fileName = self.getFileName(year, month)
+        dayWeatherList = fileHandler.readFile(fileName)
+
+        highTemp = {"avg_highest_temp": 0}
+        lowTemp = {"avg_lowest_temp": 0}
+        highHumid = {"avg_highest_humid": 0}
+
+        for data in dayWeatherList:
+            highTemp["avg_highest_temp"] += data.Max_TemperatureC
+            lowTemp["avg_lowest_temp"] += data.Min_TemperatureC
+            highHumid["avg_highest_humid"] += data.Mean_TemperatureC
+
+        highTemp["avg_highest_temp"] = int(highTemp["avg_highest_temp"] / len(dayWeatherList))
+        lowTemp["avg_lowest_temp"] = int(lowTemp["avg_lowest_temp"] / len(dayWeatherList))
+        highHumid["avg_highest_humid"] = int(highHumid["avg_highest_humid"] / len(dayWeatherList))
+
+        avCal = [highTemp, lowTemp, highHumid]
+
+        return avCal

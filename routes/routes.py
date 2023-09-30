@@ -103,3 +103,80 @@ def getAvgTemperatureHumidityStats():
     data = weatherController.getAvgTemperatureHumidityStats(year, month)
     
     return data
+
+@weatherManApp.route('temperature/avg_highest_temperature')
+def getAvgHighestTemperatureStats():
+    
+    weatherController = WeatherDataController.WeatherDataControler()
+    
+    year = request.args.get('year')
+    month = request.args.get('month')
+    
+    data = weatherController.getAvgHighestTemperatureStats(year, month)
+    
+    return data
+
+@weatherManApp.route('temperature/avg_mean_temperature')
+def getAvgMeanTemperatureStats():
+    
+    weatherController = WeatherDataController.WeatherDataControler()
+    
+    year = request.args.get('year')
+    month = request.args.get('month')
+    
+    data = weatherController.getAvgMeanTemperatureStats(year, month)
+    
+    return data
+
+
+@weatherManApp.route('temperature/avg_lowest_temperature')
+def getAvgLowestTemperatureStats():
+    
+    weatherController = WeatherDataController.WeatherDataControler()
+    
+    year = request.args.get('year')
+    month = request.args.get('month')
+    
+    data = weatherController.getAvgLowestTemperatureStats(year, month)
+    
+    return data
+
+
+@weatherManApp.route('humidity/avg_highest_humidity')
+def getAvgHighestHumidityStats():
+    
+    weatherController = WeatherDataController.WeatherDataControler()
+    
+    year = request.args.get('year')
+    month = request.args.get('month')
+    
+    data = weatherController.getAvgHighestHumidityStats(year, month)
+    
+    return data
+
+
+@weatherManApp.route('humidity/avg_lowest_humidity')
+def getAvgLowestHumidityStats():
+    
+    weatherController = WeatherDataController.WeatherDataControler()
+    
+    year = request.args.get('year')
+    month = request.args.get('month')
+    
+    data = weatherController.getAvgLowestHumidityStats(year, month)
+    
+    return data
+
+
+@weatherManApp.route('humidity/avg_mean_humidity')
+def getAvgMeanHumidityStats():
+    
+    weatherController = WeatherDataController.WeatherDataControler()
+    
+    year = request.args.get('year')
+    month = request.args.get('month')
+    
+    data = weatherController.getAvgMeanHumidityStats(year, month)
+    
+    return data
+

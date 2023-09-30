@@ -150,19 +150,69 @@ class Utils:
         fileName = self.getFileName(year, month)
         dayWeatherList = fileHandler.readFile(fileName)
 
-        highTemp = {"avg_highest_temp": 0}
-        lowTemp = {"avg_lowest_temp": 0}
-        highHumid = {"avg_highest_humid": 0}
+        avgHighTemp = {"avg_highest_temp": 0}
+        avgLowTemp = {"avg_lowest_temp": 0}
+        avgHighHumid = {"avg_highest_humid": 0}
 
         for data in dayWeatherList:
-            highTemp["avg_highest_temp"] += data.Max_TemperatureC
-            lowTemp["avg_lowest_temp"] += data.Min_TemperatureC
-            highHumid["avg_highest_humid"] += data.Mean_TemperatureC
+            avgHighTemp["avg_highest_temp"] += data.Max_TemperatureC
+            avgLowTemp["avg_lowest_temp"] += data.Min_TemperatureC
+            avgHighHumid["avg_highest_humid"] += data.Mean_TemperatureC
 
-        highTemp["avg_highest_temp"] = int(highTemp["avg_highest_temp"] / len(dayWeatherList))
-        lowTemp["avg_lowest_temp"] = int(lowTemp["avg_lowest_temp"] / len(dayWeatherList))
-        highHumid["avg_highest_humid"] = int(highHumid["avg_highest_humid"] / len(dayWeatherList))
+        avgHighTemp["avg_highest_temp"] = int(avgHighTemp["avg_highest_temp"] / len(dayWeatherList))
+        avgLowTemp["avg_lowest_temp"] = int(avgLowTemp["avg_lowest_temp"] / len(dayWeatherList))
+        avgHighHumid["avg_highest_humid"] = int(avgHighHumid["avg_highest_humid"] / len(dayWeatherList))
 
-        avCal = [highTemp, lowTemp, highHumid]
+        avCal = [avgHighTemp, avgLowTemp, avgHighHumid]
 
         return avCal
+    
+    
+    def cal_AvgTemperatureHumidStat(self, year, month, category):
+        fileName = self.getFileName(year, month)
+        dayWeatherList = fileHandler.readFile(fileName)        
+        
+        if category == 'highestTemp':
+            avgHighTemp = {"avg_highest_temp": 0}
+            for data in dayWeatherList:
+                avgHighTemp["avg_highest_temp"] += data.Max_TemperatureC
+            avgHighTemp["avg_highest_temp"] = int(avgHighTemp["avg_highest_temp"] / len(dayWeatherList))
+            return avgHighTemp
+        
+        elif category == 'meanTemp':
+            avgMeanTemp = {"avg_highest_temp": 0}
+            for data in dayWeatherList:
+                avgMeanTemp["avg_highest_temp"] += data.Mean_TemperatureC
+            avgMeanTemp["avg_highest_temp"] = int(avgMeanTemp["avg_highest_temp"] / len(dayWeatherList))
+            return avgMeanTemp
+        
+        elif category == 'lowestTemp':
+            avgLowTemp = {"avg_lowest_temp": 0}
+            for data in dayWeatherList:
+                avgLowTemp["avg_lowest_temp"] += data.Min_TemperatureC
+            avgLowTemp["avg_lowest_temp"] = int(avgLowTemp["avg_lowest_temp"] / len(dayWeatherList))
+            return avgLowTemp
+        
+        elif category == 'highestHumid':
+            avgHighHumid = {"avg_highest_humid": 0}
+            for data in dayWeatherList:
+                avgHighHumid["avg_highest_humid"] += data.Max_TemperatureC
+            avgHighHumid["avg_highest_humid"] = int(avgHighHumid["avg_highest_humid"] / len(dayWeatherList))
+            return avgHighHumid
+            
+        
+        elif category == 'lowestHumid':
+            avglowHumid = {"avg_highest_humid": 0}
+            for data in dayWeatherList:
+                avglowHumid["avg_highest_humid"] += data.Min_TemperatureC
+            avglowHumid["avg_highest_humid"] = int(avglowHumid["avg_highest_humid"] / len(dayWeatherList))
+            return avglowHumid
+            
+        
+        elif category == 'meanHumid':
+            avgMeanHumid = {"avg_highest_humid": 0}
+            for data in dayWeatherList:
+                avgMeanHumid["avg_highest_humid"] += data.Mean_TemperatureC
+            avgMeanHumid["avg_highest_humid"] = int(avgMeanHumid["avg_highest_humid"] / len(dayWeatherList))
+            return avgMeanHumid
+            

@@ -7,6 +7,13 @@ class FileHandler:
         
         
     def readFile(self, fileName):
+        
+        '''
+            @param fileName: The path to the CSV file containing weather data (str).            
+            @desc: This method reads weather data from a CSV file, creates DayWeatherData objects
+                for valid rows, and returns a list of DayWeatherData objects.
+            @return: A list of DayWeatherData objects representing the weather data.
+        '''
         weatherDataList = []
         
         with open(fileName, 'r') as file:

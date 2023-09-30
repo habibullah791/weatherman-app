@@ -6,6 +6,16 @@ weatherManApp = Blueprint('weatherManApp', __name__)
 
 
 
+'''
+Get temperature and humidity stats for a specific month and year.
+
+    @params:
+        - year (int): The year for which to retrieve statistics.
+        - month (int): The month for which to retrieve statistics.
+
+    @Returns:
+        JSON data containing temperature and humidity statistics.
+'''
 @weatherManApp.route('temperature/highest_lowest_temperature')
 def getTemperatureHumidityStats():
     
@@ -19,6 +29,20 @@ def getTemperatureHumidityStats():
     return data
 
 
+
+
+
+'''
+Get Highest, Lowest and Mean temperature stats for a specific month and year.
+
+    @params:
+        - year (int): The year for which to retrieve statistics.
+        - month (int): The month for which to retrieve statistics.
+
+    @Returns:
+        JSON data containing temperature and humidity statistics.
+'''
+
 @weatherManApp.route('temperature/highest_temperature')
 def getHighestTemperatureStats():
     
@@ -29,7 +53,6 @@ def getHighestTemperatureStats():
     data = weatherController.getHighestTemperatureStats(year, month)
     
     return data
-
 
 
 @weatherManApp.route('temperature/lowest_temperature')
@@ -55,6 +78,16 @@ def getMeanTemperatureStats():
     
     return data
 
+'''
+Get Highest, Lowest and Mean Humidity stats for a specific month and year.
+
+    @params:
+        - year (int): The year for which to retrieve statistics.
+        - month (int): The month for which to retrieve statistics.
+
+    @Returns:
+        JSON data containing humidity statistics.
+'''
 @weatherManApp.route('humidity/highest_humidity')
 def getHighestHumidityStats():
     
@@ -92,6 +125,17 @@ def getMeanHumidityStats():
 
 
 
+'''
+Get Average of Highest, Lowest temperature and Humidity stats for a specific month and year.
+
+    @params:
+        - year (int): The year for which to retrieve statistics.
+        - month (int): The month for which to retrieve statistics.
+
+    @Returns:
+        JSON data containing temperature and humidity statistics.
+'''
+
 @weatherManApp.route('temperature_humid/avg_highest_lowest_temperature_humidity')
 def getAvgTemperatureHumidityStats():
     
@@ -104,6 +148,17 @@ def getAvgTemperatureHumidityStats():
     
     return data
 
+
+'''
+Get Average Temperature stats for a specific month and year.
+
+    @params:
+        - year (int): The year for which to retrieve statistics.
+        - month (int): The month for which to retrieve statistics.
+
+    @Returns:
+        JSON data containing Temperature humidity statistics.
+'''
 @weatherManApp.route('temperature/avg_highest_temperature')
 def getAvgHighestTemperatureStats():
     
@@ -142,6 +197,16 @@ def getAvgLowestTemperatureStats():
     return data
 
 
+'''
+Get Average Humidity stats for a specific month and year.
+
+    @params:
+        - year (int): The year for which to retrieve statistics.
+        - month (int): The month for which to retrieve statistics.
+
+    @Returns:
+        JSON data containing Humidity humidity statistics.
+'''
 @weatherManApp.route('humidity/avg_highest_humidity')
 def getAvgHighestHumidityStats():
     

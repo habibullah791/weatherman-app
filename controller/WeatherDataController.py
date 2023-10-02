@@ -2,13 +2,10 @@ from utils.Utils import Utils
 from DB.FileHandler import FileHandler
 
 
-file_handler = FileHandler()
-utils = Utils()
-
-
 class WeatherDataControler:
-    def __init__(self) -> None:
-        pass
+    def __init__(self):
+        self.fileHandler = FileHandler()
+        self.utils = Utils()
 
     def getTemperatureHumidityStats(self, year, month):
         '''
@@ -18,8 +15,8 @@ class WeatherDataControler:
                 month and year and returns the data in JSON format.
             @return: JSON-formatted data containing temperature and humidity statistics.
         '''
-        data = utils.cal_HighestLowestTemperatureHumidity(year, month)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_HighestLowestTemperatureHumidity(year, month)
+        data = self.utils.convertToJSON(data)
 
         return data
 
@@ -32,8 +29,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing highest temperature statistics.
         '''
         category = 'highestTemp'
-        data = utils.cal_TemperatureStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_TemperatureStat(year, month, category)
+        data = self.utils.convertToJSON(data)
 
         return data
 
@@ -46,8 +43,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing lowest temperature statistics.
         '''
         category = 'lowestTemp'
-        data = utils.cal_TemperatureStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_TemperatureStat(year, month, category)
+        data = self.utils.convertToJSON(data)
 
         return data
 
@@ -60,8 +57,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing mean temperature statistics.
         '''
         category = 'meanTemp'
-        data = utils.cal_TemperatureStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_TemperatureStat(year, month, category)
+        data = self.utils.convertToJSON(data)
 
         return data
     
@@ -75,8 +72,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing highest humidity statistics.
         '''
         category = 'highestHumid'
-        data = utils.cal_HumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_HumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
 
         return data
     
@@ -89,8 +86,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing lowest humidity statistics.
         '''
         category = 'lowestHumid'
-        data = utils.cal_HumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_HumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
 
         return data
     
@@ -103,8 +100,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing mean humidity statistics.
         '''
         category = 'meanHumid'
-        data = utils.cal_HumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_HumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
 
         return data
 
@@ -116,8 +113,8 @@ class WeatherDataControler:
                 month and year and returns the data in JSON format.
             @return: JSON-formatted data containing average temperature and humidity statistics.
         '''
-        data = utils.cal_AvgHighestLowestTemperatureHumidity(year, month)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_AvgHighestLowestTemperatureHumidity(year, month)
+        data = self.utils.convertToJSON(data)
         
         return data
     
@@ -130,8 +127,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing average highest temperature statistics.
         '''
         category = 'highestTemp'
-        data = utils.cal_AvgTemperatureHumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_AvgTemperatureHumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
         
         return data
     
@@ -144,8 +141,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing average mean temperature statistics.
         '''
         category = 'meanTemp'
-        data = utils.cal_AvgTemperatureHumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_AvgTemperatureHumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
         
         return data
     
@@ -158,8 +155,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing average lowest temperature statistics.
         '''
         category = 'lowestTemp'
-        data = utils.cal_AvgTemperatureHumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_AvgTemperatureHumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
         
         return data
     
@@ -172,8 +169,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing average highest humidity statistics.
         '''
         category = 'highestHumid'
-        data = utils.cal_AvgTemperatureHumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_AvgTemperatureHumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
         
         return data
     def getAvgLowestHumidityStats(self, year, month):
@@ -185,8 +182,8 @@ class WeatherDataControler:
             @return: JSON-formatted data containing average lowest humidity statistics.
         '''
         category = 'lowestHumid'
-        data = utils.cal_AvgTemperatureHumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_AvgTemperatureHumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
         
         return data
     
@@ -199,7 +196,7 @@ class WeatherDataControler:
             @return: JSON-formatted data containing average mean humidity statistics.
         '''
         category = 'meanHumid'
-        data = utils.cal_AvgTemperatureHumidStat(year, month, category)
-        data = utils.convertToJSON(data)
+        data = self.utils.cal_AvgTemperatureHumidStat(year, month, category)
+        data = self.utils.convertToJSON(data)
         
         return data

@@ -3,41 +3,47 @@ import calendar
 import json
 
 from DB.FileHandler import FileHandler
-from model.DayWeather import DayWeatherData
-
-fileHandler = FileHandler()
 
 
 class Utils:
-    def __init__(self) -> None:
-        pass
+    def __init__(self):
+        self.fileHandler = FileHandler()
+
 
     def getFileName(self, year, month):
-        
         '''
-            @param year: The year for which the weather data is needed (int).
-            @param month: The month for which the weather data is needed (int).
-            
-            @desc: This method constructs the filename for weather data based on the provided
-                year and month and returns the full path to the file.
+        @param year: The year for which the weather data is needed (int).
+        @param month: The month for which the weather data is needed (int).
 
-            @return: The full path to the weather data file (str).
+        @desc: This method constructs the filename for weather data based on the provided
+            year and month and returns the full path to the file.
+
+        @return: The full path to the weather data file (str).
         '''
         
-        directory = 'data/weatherfiles'
-        month = int(month)
-        year = int(year)
+        try:
+            directory = 'data/weatherfiles'
+            month = int(month)
+            year = int(year)
 
-        # Triming the month number to a three-letter month abbreviation
-        month_abbr = calendar.month_abbr[month][:3]
+            # Validate the month input (1-12)
+            if month < 1 or month > 12:
+                raise ValueError("Month must be between 1 and 12.")
 
-        # Generate a pattern for the filename based on the year and month abbreviation
-        fileName = f'Murree_weather_{year}_{month_abbr}.txt'
+            # Trim the month number to a three-letter month abbreviation
+            month_abbr = calendar.month_abbr[month][:3]
 
-        # Concatenate the directory path and filename
-        fullPath = os.path.join(directory, fileName)
+            # Generate a pattern for the filename based on the year and month abbreviation
+            fileName = f'Murree_weather_{year}_{month_abbr}.txt'
 
-        return fullPath
+            # Concatenate the directory path and filename
+            fullPath = os.path.join(directory, fileName)
+
+            return fullPath
+        except ValueError as e:
+            print(f"Error: {e}")
+            return None  # Return None to indicate an error
+
 
     def convertToJSON(self, weatherDataList):
         '''
@@ -65,7 +71,7 @@ class Utils:
                     - Highest humidity and the corresponding date (dict).
         '''
         fileName = self.getFileName(year, month)
-        dayWeatherList = fileHandler.readFile(fileName)
+        dayWeatherList = self.fileHandler.readFile(fileName)
 
         highTemp = {'highest_temp': 0, 'date': ''}
         lowTemp = {'lowest_temp': 1000, 'date': ''}
@@ -111,7 +117,7 @@ class Utils:
                     corresponding date (dict).
         '''
         fileName = self.getFileName(year, month)
-        dayWeatherList = fileHandler.readFile(fileName)
+        dayWeatherList = self.fileHandler.readFile(fileName)
 
         if category == 'highestTemp':
             highTemp = {'highest_temp': 0, 'date': ''}
@@ -167,7 +173,7 @@ class Utils:
                     corresponding date (dict).
         '''
         fileName = self.getFileName(year, month)
-        dayWeatherList = fileHandler.readFile(fileName)
+        dayWeatherList = self.fileHandler.readFile(fileName)
 
         if category == 'highestHumid':
             highHumid = {'highest_humid': 0, 'date': ''}
@@ -221,7 +227,7 @@ class Utils:
         '''
         
         fileName = self.getFileName(year, month)
-        dayWeatherList = fileHandler.readFile(fileName)
+        dayWeatherList = self.fileHandler.readFile(fileName)
 
         avgHighTemp = {'avg_highest_temp': 0}
         avgLowTemp = {'avg_lowest_temp': 0}
@@ -259,7 +265,7 @@ class Utils:
             @return: A dictionary containing the calculated average temperature or humidity statistic (dict).
         '''
         fileName = self.getFileName(year, month)
-        dayWeatherList = fileHandler.readFile(fileName)        
+        dayWeatherList = self.fileHandler.readFile(fileName)        
         
         if category == 'highestTemp':
             avgHighTemp = {'avg_highest_temp': 0}

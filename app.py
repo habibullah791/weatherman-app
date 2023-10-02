@@ -1,6 +1,6 @@
 # app.py (or main.py)
 from flask import Flask
-from routes.routes import weatherManApp
+from routes.Routes import weatherManApp
 
 app = Flask(__name__)
 
